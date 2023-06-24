@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="register" method="post">
+        {%csrf_token%}
+        <input type="text" for="name" placeholder="username" name="username">
+        <input type="text" for="name" placeholder="email" name="email">
+        <input type="text" for="name" placeholder="number" name="number">
+        <input type="text" for="name" placeholder="password" name="password">
+        <input type="text" for="name" placeholder="confirm password" name="confirm">
+        <button type="submit">Sign Up Here</button>
+    </form>
+</body>
+
+</html>
