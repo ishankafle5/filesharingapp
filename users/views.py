@@ -44,3 +44,6 @@ def login_page(request):
     object = User.objects.filter(email=email, password=password)
     if object:
         return render(request, 'uploadfile.html')
+
+    else:
+        return render(request, 'login.html')
