@@ -14,65 +14,96 @@
             padding: 0;
         }
 
-        /* Form Container */
         .form-container {
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
+            width: 100vw;
         }
 
-        /* Form Styling */
+        .form form{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
         .form {
+            border: 1px solid rgb(199, 131, 131);
+            box-shadow: rgb(205, 120, 120);
+            padding: 0px 0px 15px 0px;
+
             width: 30%;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: white;
+
         }
 
-        .form input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid lavender;
-            border-radius: 5px;
-            font-size: 16px;
+
+        form label {
+            font-size: 15px;
         }
 
-        .form button[type="submit"] {
+        form input[type=text] {
+            border: .1px solid;
+            height: 25px;
+            border-radius: 3px;
+            outline: none;
+            margin-bottom: 8px;
+        }
+
+        .form h2 {
             width: 100%;
-            padding: 10px;
-            background-color: lavender;
+            text-align: center;
+        }
+
+        form a {
+            font-size: 10px;
+            text-decoration: none;
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            /* left: 20px; */
+        }
+
+        .form button {
+            width: 30%;
+            background: black;
             color: white;
-            border: none;
+            padding: 5px;
+            border: 0px solid;
             border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+        }
+        
+        .form p {
+            color: red;
+            font-size: 15px;
+            width:100%;
+            display:flex;
+            justify-content:center;
         }
 
-        .form button[type="submit"]:hover {
-            background-color: #c0b8e0;
-        }
     </style>
 </head>
 
 <body>
     <div class="form-container">
         <div class="form">
-            <h2>Login Form</h2>
+            <h2>Hello Users</h2>
+            {%if msg%}
+            <p>{{msg}}</p>
+            {%endif%}
             <form action="login" method="post">
                 {% csrf_token %}
-                <div class="form-group">
+                <label for="email">Email</label>
+
                     <input type="text" for="name" placeholder="Email" name="email">
-                </div>
-                <div class="form-group">
+                    <label for="paswword">Password</label>
                     <input type="text" for="name" placeholder="Password" name="password">
-                </div>
-                <div class="form-group">
                     <button type="submit">Sign In</button>
-                </div>
-                <a href="/register">Don't have any account</a>
+                <a href="/register">Don't have any account? Sign Up</a>
 
             </form>
         </div>

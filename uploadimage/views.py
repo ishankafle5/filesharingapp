@@ -5,12 +5,27 @@ from django.http import HttpResponse, StreamingHttpResponse
 from django.shortcuts import redirect, render
 
 from uploadimage.models import File
+from users.models import User
+
 # Create your views here.
 import os
 
 
 def upload_page(request):
-    return render(request, 'upload.html')
+
+    if request.session.get('user_email'):
+
+        object = User.objects.filter(email=request.session['user_email'])
+        for i in object:
+            id = (i.id)
+    else:
+        return redirect('/login')
+    object = File.objects.filter(user_id_id=id)
+
+    if object.exists():
+        print("Yess")
+
+    return render(request, 'upload.html', {'object': object})
 
 
 def upload_file(request):
@@ -33,14 +48,19 @@ def upload_file(request):
         final_path = file_path[-1].replace('\\', '')
         server_name = request.get_host()
         final_path = str(request.get_host())+"\\media?filename="+final_path
+        object = User.objects.filter(email=request.session['user_email'])
+        for i in object:
+            id = (i.id)
+            print("Id")
+            print(id)
 
-        filteringfile = File.objects.filter(file_name=link.name, user_id=1)
+        filteringfile = File.objects.filter(file_name=link.name, user_id_id=id)
 
         if filteringfile:
             return HttpResponse("ALready added by you")
 
         object = File.objects.create(
-            file_name=link.name, file_size=20, file_link=server_name+f"/media?filename={str(link.name)}", user_id_id=1)
+            file_name=link.name, file_size=20, file_link=server_name+f"/media?filename={str(link.name)}", user_id_id=id)
 
         return redirect('/media?filename='+str(link.name))
 

@@ -1,3 +1,4 @@
+{% comment %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,8 +71,168 @@
                     <button type="submit">Upload</button>
                 </div>
             </form>
+
+
+        </div>
+        <div class="linktable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>File Name</th>
+                        <th>User ID</th>
+                        <th>File Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in object %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.file_name }}</td>
+                        <td>{{ i.user_id_id }}</td>
+                        <td>{{ i.file_link }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+
+</body>
+
+
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <style>
+        /* Body Styling */
+        body {
+            background-color: lavender;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Form Container */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form Styling */
+        .form {
+            width: 30%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid lavender;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: lavender;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form button[type="submit"]:hover {
+            background-color: #c0b8e0;
+        }
+
+        /* Table Styling */
+        .linktable {
+            margin-top: 20px;
+        }
+
+        .linktable table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .linktable th,
+        .linktable td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid lavender;
+        }
+
+        .linktable th {
+            background-color: lavender;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form">
+            <h2>File Upload</h2>
+            <form action="upload" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="file" for="name" name="filename">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="linktable">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>File Name</th>
+                    <th>User ID</th>
+                    <th>File Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in object %}
+                <tr>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.file_name }}</td>
+                    <td>{{ i.user_id_id }}</td>
+                    <td>
+                        <a href="//{{i.file_link }}">
+
+                            Download
+                        </a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </body>
 
 </html>
