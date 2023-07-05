@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <style>
+        /* Body Styling */
+        body {
+            background-color: lavender;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .form {
+            border: 1px solid rgb(199, 131, 131);
+            box-shadow: rgb(205, 120, 120);
+            padding: 0px 0px 15px 0px;
+
+            width: 30%;
+            background: white;
+
+        }
+
+        .form form {
+
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        form label {
+            font-size: 15px;
+        }
+
+        form input[type=text] {
+            border: .1px solid;
+            height: 25px;
+            border-radius: 3px;
+            outline: none;
+            margin-bottom: 8px;
+        }
+
+        .form h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        form a {
+            font-size: 10px;
+            text-decoration: none;
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            /* left: 20px; */
+        }
+
+        .form button {
+            width: 30%;
+            background: black;
+            color: white;
+            padding: 5px;
+            border: 0px solid;
+            border-radius: 5px;
+        }
+        
+        .form p {
+            color: red;
+            font-size: 15px;
+            width:100%;
+            display:flex;
+            justify-content:center;
+            
+
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form">
+            <h2>Welcome to the FileVerse</h2>
+            {%if msg%}
+            <p>{{msg}} !</p>
+            {% endif %}
+            <form action="register" method="post">
+
+                {% csrf_token %}
+                <label for="fullname">Full Name</label>
+                <input type="text" for="fullname" placeholder="Full Name" name="fullname" required/>
+                <label for="email">Email</label>
+
+                <input type="text" for="name" placeholder="Email" name="email" required/>
+                <label for="number">Phone Number</label>
+                <input type="text" for="name" placeholder="Number" name="number" required/>
+                <label for="paswword">Password</label>
+                <input type="text" for="name" placeholder="Password" name="password" required/>
+                <label for="confirmpw">Confirm Password</label>
+                <input type="text" for="name" placeholder="Confirm Password" name="confirm" required/>
+                <button type="submit">Sign Up</button>
+                <a href="/login">Already Registered? Login</a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
